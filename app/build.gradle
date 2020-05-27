@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion 29
@@ -21,10 +22,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     kapt "com.jakewharton:butterknife-compiler:9.0.0"
+    compile "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation project(path: ':base')
+
+    kapt 'com.jakewharton:butterknife-compiler:10.2.1'
+}
+repositories {
+    mavenCentral()
 }

@@ -1,5 +1,8 @@
 package com.yyhd.myreader.bookshelf
 
+import com.yyhd.base.BasePresenter
+import com.yyhd.base.BaseView
+
 /**
  * Created by hanli
  * date 2019-10-18.
@@ -7,10 +10,12 @@ package com.yyhd.myreader.bookshelf
  */
 class BookshelfContract {
 
-    interface Presenter {
+    interface Presenter : BasePresenter{
 
     }
 
-    interface View
+    interface View : BaseView<Presenter>{
+
+    }
 
 }

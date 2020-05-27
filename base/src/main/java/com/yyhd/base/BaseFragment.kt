@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import butterknife.ButterKnife
 import com.billy.android.loading.Gloading
 
 
@@ -16,7 +15,7 @@ import com.billy.android.loading.Gloading
  */
 open abstract class BaseFragment : Fragment {
 
-    private var mHolder : Gloading.Holder
+    private lateinit var mHolder : Gloading.Holder
 
 
     constructor() : super()
@@ -37,11 +36,17 @@ open abstract class BaseFragment : Fragment {
 
 
 
-        return super.onCreateView(inflater, container, savedInstanceState)
+        return root
     }
 
+    /**
+     * 返回布局的id
+     */
     protected abstract fun getLayoutId() : Int
 
+    /**
+     * 返回状态页替换时候的容器，如果返回空，那么默认替换根布局
+     */
     protected fun getStatusViewHolder() : View? {
         return null
     }
