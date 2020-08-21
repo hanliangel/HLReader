@@ -1,10 +1,12 @@
 package com.yyhd.base
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import butterknife.ButterKnife
 import com.billy.android.loading.Gloading
 
 
@@ -33,8 +35,11 @@ open abstract class BaseFragment : Fragment {
         }
 
         var root = inflater.inflate(layoutId , container , false)
+        ButterKnife.bind(this , root)
 
+        initView(savedInstanceState , root)
 
+        initValues(arguments)
 
         return root
     }
@@ -50,5 +55,9 @@ open abstract class BaseFragment : Fragment {
     protected fun getStatusViewHolder() : View? {
         return null
     }
+
+    protected abstract fun initValues(arguments : Bundle?)
+
+    protected abstract fun initView(savedInstanceState: Bundle? , rootView : View)
 
 }
