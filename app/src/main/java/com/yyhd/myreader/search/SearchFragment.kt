@@ -46,6 +46,10 @@ class SearchFragment : BaseMvpFragment<SearchContract.Presenter>() , SearchContr
 
     lateinit var bookEngine: BaseBookEngine
 
+    init {
+        setPresenter(SearchPresenter(this))
+    }
+
     override fun initValues(arguments: Bundle?) {
         bookEngine = BiqukanBookEngine()
 
@@ -65,16 +69,7 @@ class SearchFragment : BaseMvpFragment<SearchContract.Presenter>() , SearchContr
         searchView.showSearch(false)
         searchView.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                GlobalScope.launch(Dispatchers.IO) {
-                    query?.let {
-                        val bookList = bookEngine.searchBook(query)
-                        withContext(Dispatchers.Main){
-                            fillData(bookList)
-                            textView.setText("成功加载嘿嘿")
-                            LogUtils.i("当前的线程：" + Thread.currentThread().name + " -- 结果大小：" + bookList.size)
-                        }
-                    }
-                }
+                getPresenter().searchBook(query)
                 return false
             }
 
@@ -85,7 +80,7 @@ class SearchFragment : BaseMvpFragment<SearchContract.Presenter>() , SearchContr
         })
     }
 
-    fun fillData(bookList : List<Book>){
+    override fun fillData(bookList : List<Book>){
         searchResultAdapter.setData(bookList)
     }
 

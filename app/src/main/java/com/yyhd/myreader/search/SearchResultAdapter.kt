@@ -1,5 +1,7 @@
 package com.yyhd.myreader.search
 
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,9 +9,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
 import butterknife.ButterKnife
+import com.blankj.utilcode.util.LogUtils
 import com.yyhd.base.BaseRecycleAdapter
 import com.yyhd.myreader.R
+import com.yyhd.myreader.R2
 import com.yyhd.myreader.db.Book
+import com.yyhd.myreader.detail.BookDetailActivity
+import com.yyhd.myreader.detail.BookDetailFragment
 
 /**
  * Created by hanli
@@ -27,6 +33,12 @@ class SearchResultAdapter : BaseRecycleAdapter<Book , SearchResultAdapter.Search
         val book = getItemBean(position)
         holder.tvBookName.setText(book.bookName)
         holder.tvAuthorName.setText(book.author)
+
+        holder.itemView.setOnClickListener { v ->
+            val bundle = Bundle()
+            bundle.putSerializable(BookDetailFragment.PARAM_KEY_BOOK, book)
+            BookDetailActivity.startActivity(v.context, bundle)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -35,17 +47,9 @@ class SearchResultAdapter : BaseRecycleAdapter<Book , SearchResultAdapter.Search
 
     class SearchResultHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        @BindView(R.id.tv_book_name)
-        lateinit var tvBookName : TextView
+        var tvBookName : TextView = itemView.findViewById(R.id.tv_book_name)
 
-        @BindView(R.id.tv_author)
-        lateinit var tvAuthorName : TextView
-
-        init {
-            ButterKnife.bind(this , itemView)
-        }
-
-
+        var tvAuthorName : TextView = itemView.findViewById(R.id.tv_author)
 
     }
 }
