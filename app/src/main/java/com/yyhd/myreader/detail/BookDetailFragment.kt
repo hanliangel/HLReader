@@ -3,6 +3,7 @@ package com.yyhd.myreader.detail
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
@@ -12,13 +13,15 @@ import com.yyhd.base.widget.rerycleview.HeaderAndFooterRecycleView
 import com.yyhd.myreader.R
 import com.yyhd.myreader.db.Book
 import com.yyhd.myreader.db.Chapter
+import com.yyhd.myreader.read.ReadActivity
+import com.yyhd.myreader.read.ReadFragment
 
 /**
  * Created by hanli
  * date 2020-08-21.
  * ps:
  */
-open class BookDetailFragment : BaseMvpFragment<BookDetailContract.Presenter>() , BookDetailContract.View{
+open class BookDetailFragment : BaseMvpFragment<BookDetailContract.Presenter>() , BookDetailContract.View , ChapterAdapter.ChapterListListener{
 
 
     lateinit var book : Book
@@ -49,6 +52,7 @@ open class BookDetailFragment : BaseMvpFragment<BookDetailContract.Presenter>() 
 
             recycleView.layoutManager = LinearLayoutManager(activity , LinearLayoutManager.VERTICAL , false)
             chapterAdapter = ChapterAdapter()
+            chapterAdapter.chapterListListener = this
             recycleView.adapter =chapterAdapter
 
             recycleView.addHeader(headerView)
@@ -59,6 +63,16 @@ open class BookDetailFragment : BaseMvpFragment<BookDetailContract.Presenter>() 
 
     override fun initView(savedInstanceState: Bundle?, rootView: View) {
 
+    }
+
+    override fun onItemClick(index: Int) {
+        val context = activity
+        context?.let {
+            val bundle = Bundle()
+            bundle.putSerializable(ReadFragment.PARAM_KEY_BOOK , book)
+            bundle.putInt(ReadFragment.PARAM_KEY_CHAPTER_INDEX , index)
+            ReadActivity.startActivity(context , bundle)
+        }
     }
 
     override fun fillData(book: Book) {

@@ -22,6 +22,12 @@
         <activity android:name=".detail.BookDetailActivity"
                 android:screenOrientation="portrait"
                 />
+
+
+        <activity android:name=".read.ReadActivity"
+                android:screenOrientation="portrait"
+                />
+
     </application>
 
 </manifest>

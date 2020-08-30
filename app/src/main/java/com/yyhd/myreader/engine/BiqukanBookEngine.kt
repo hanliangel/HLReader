@@ -14,6 +14,20 @@ import java.net.URLEncoder
  */
 class BiqukanBookEngine : BaseBookEngine() {
 
+    val baseBiqukanUrl = "https://www.biqukan.com"
+
+    override fun getChapterContent(chapter: Chapter) {
+        try {
+            var document = getDocument("$baseBiqukanUrl${chapter.url}")
+            LogUtils.i("getChapterContent document:$document")
+            val contentElement = document.getElementsByClass("showtxt")
+            val textContent = contentElement.text()
+            chapter.content = textContent
+        }catch (e : Exception) {
+            e.printStackTrace()
+        }
+    }
+
     override fun searchBook(searchStr: String): List<Book> {
         var bookList = ArrayList<Book>()
         try {

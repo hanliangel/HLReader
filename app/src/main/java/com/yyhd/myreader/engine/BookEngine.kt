@@ -1,6 +1,7 @@
 package com.yyhd.myreader.engine
 
 import com.yyhd.myreader.db.Book
+import com.yyhd.myreader.db.Chapter
 
 /**
  * Created by hanli
@@ -21,4 +22,8 @@ interface BookEngine {
     fun getBookDetail(book : Book)
 
 
+    /**
+     * 获得章节内容详情
+     */
+    fun getChapterContent(chapter: Chapter)
 }
