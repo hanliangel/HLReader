@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.OnClick
+import com.blankj.utilcode.util.ToastUtils
 import com.yyhd.base.BaseMvpFragment
 import com.yyhd.myreader.R
 import com.yyhd.myreader.R2
@@ -46,7 +47,7 @@ class ReadFragment : BaseMvpFragment<ReadContract.Presenter>() , ReadContract.Vi
             book = arguments.getSerializable(PARAM_KEY_BOOK) as Book
             currentChapterIndex = arguments.getInt(PARAM_KEY_CHAPTER_INDEX)
 
-            getPresenter().loadChapter(book.Chapters.get(currentChapterIndex))
+            getPresenter().loadChapter(book.chapters.get(currentChapterIndex))
         }
 
     }
@@ -57,12 +58,22 @@ class ReadFragment : BaseMvpFragment<ReadContract.Presenter>() , ReadContract.Vi
 
     @OnClick(R.id.tv_next)
     fun clickNext(){
-
+        if(currentChapterIndex == book.chapters.size -1){
+            ToastUtils.showShort("已经看到最后了！")
+            return
+        }
+        currentChapterIndex ++
+        getPresenter().loadChapter(book.chapters.get(currentChapterIndex))
     }
 
     @OnClick(R.id.tv_last)
     fun clickLast(){
-
+        if(currentChapterIndex == 0){
+            ToastUtils.showShort("当前是第一章")
+            return
+        }
+        currentChapterIndex --
+        getPresenter().loadChapter(book.chapters.get(currentChapterIndex))
     }
 
     override fun getLayoutId(): Int {

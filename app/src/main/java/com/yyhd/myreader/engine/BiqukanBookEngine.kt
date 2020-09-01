@@ -2,10 +2,15 @@ package com.yyhd.myreader.engine
 
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ObjectUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.yyhd.myreader.db.Book
 import com.yyhd.myreader.db.Chapter
 import org.jsoup.nodes.Document
 import java.net.URLEncoder
+import org.jsoup.safety.Whitelist
+import org.jsoup.Jsoup
+
+
 
 /**
  * Created by hanli
@@ -19,12 +24,13 @@ class BiqukanBookEngine : BaseBookEngine() {
     override fun getChapterContent(chapter: Chapter) {
         try {
             var document = getDocument("$baseBiqukanUrl${chapter.url}")
-            LogUtils.i("getChapterContent document:$document")
             val contentElement = document.getElementsByClass("showtxt")
-            val textContent = contentElement.text()
+            var textContent = contentElement.html()
+            textContent = Jsoup.clean(textContent , "" , Whitelist.none() , Document.OutputSettings().prettyPrint(false))
             chapter.content = textContent
         }catch (e : Exception) {
             e.printStackTrace()
+            ToastUtils.showShort("获取章节内容发生错误：${e.message}")
         }
     }
 
@@ -51,6 +57,7 @@ class BiqukanBookEngine : BaseBookEngine() {
             }
         } catch (e : Exception){
             e.printStackTrace()
+            ToastUtils.showShort("搜索书本发生错误：${e.message}")
         }
         return bookList
     }
@@ -82,7 +89,7 @@ class BiqukanBookEngine : BaseBookEngine() {
                 }
             }
 //            LogUtils.i("getBookDetail  document: $document")
-            book.Chapters = chapterList
+            book.chapters = chapterList
         } catch (e : Exception){
             e.printStackTrace()
         }

@@ -1,30 +1,22 @@
 package com.yyhd.myreader.search
 
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.provider.Settings
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
-import com.blankj.utilcode.util.LogUtils
+import butterknife.OnClick
 import com.blankj.utilcode.util.ObjectUtils
-import com.blankj.utilcode.util.ProcessUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import com.yyhd.base.BaseMvpFragment
 import com.yyhd.base.widget.NoBottomDividerItemDecoration
 import com.yyhd.myreader.R
 import com.yyhd.myreader.db.Book
 import com.yyhd.myreader.engine.BaseBookEngine
-import com.yyhd.myreader.engine.BequgeBookEngine
 import com.yyhd.myreader.engine.BiqukanBookEngine
-import com.yyhd.myreader.engine.BookEngine
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 /**
  * Created by hanli
@@ -80,7 +72,15 @@ class SearchFragment : BaseMvpFragment<SearchContract.Presenter>() , SearchContr
         })
     }
 
+    @OnClick(R.id.bt_search)
+    fun clickStartSearch(){
+        searchView.showSearch(false)
+    }
+
     override fun fillData(bookList : List<Book>){
+        if(ObjectUtils.isEmpty(bookList)){
+            ToastUtils.showShort("没有搜到东西啊！")
+        }
         searchResultAdapter.setData(bookList)
     }
 

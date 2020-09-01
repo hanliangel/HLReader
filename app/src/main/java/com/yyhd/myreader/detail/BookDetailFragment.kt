@@ -3,16 +3,12 @@ package com.yyhd.myreader.detail
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
-import com.blankj.utilcode.util.ToastUtils
 import com.yyhd.base.BaseMvpFragment
 import com.yyhd.base.widget.rerycleview.HeaderAndFooterRecycleView
 import com.yyhd.myreader.R
 import com.yyhd.myreader.db.Book
-import com.yyhd.myreader.db.Chapter
 import com.yyhd.myreader.read.ReadActivity
 import com.yyhd.myreader.read.ReadFragment
 
@@ -76,7 +72,7 @@ open class BookDetailFragment : BaseMvpFragment<BookDetailContract.Presenter>() 
     }
 
     override fun fillData(book: Book) {
-        chapterAdapter.setData(book.Chapters)
+        chapterAdapter.setData(book.chapters)
     }
 
     companion object {

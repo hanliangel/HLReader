@@ -5,10 +5,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <com.miguelcatalan.materialsearchview.MaterialSearchView
-            android:id="@+id/floating_search_view"
+    <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp" />
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="100dp" >
+
+            <Button
+                    android:id="@+id/bt_search"
+                    android:padding="5dp"
+                    android:text="开始搜索"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <com.miguelcatalan.materialsearchview.MaterialSearchView
+                android:id="@+id/floating_search_view"
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+
+    </FrameLayout>
+
 
     <TextView
             android:id="@+id/tv_test"
@@ -18,7 +39,6 @@
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycle_view"
-            android:background="#00ff00"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

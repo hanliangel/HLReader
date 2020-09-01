@@ -27,7 +27,7 @@ data class Book(var bookName : String) : Serializable{
     /**
      * 本书对应的章节
      */
-    lateinit var Chapters : List<Chapter>
+    lateinit var chapters : List<Chapter>
 
     override fun toString(): String {
         return "Book(bookName='$bookName', author='$author', introduction='$introduction', bookDetailUrl='$bookDetailUrl')"
