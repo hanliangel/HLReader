@@ -8,7 +8,7 @@ import butterknife.BindView
 import com.yyhd.base.BaseMvpFragment
 import com.yyhd.base.widget.rerycleview.HeaderAndFooterRecycleView
 import com.yyhd.myreader.R
-import com.yyhd.myreader.db.Book
+import com.yyhd.myreader.db.table.Book
 import com.yyhd.myreader.read.ReadActivity
 import com.yyhd.myreader.read.ReadFragment
 

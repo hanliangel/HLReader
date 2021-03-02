@@ -1,9 +1,8 @@
 package com.yyhd.myreader.read
 
-import com.yyhd.base.BaseMvpPresenter
 import com.yyhd.base.BasePresenter
 import com.yyhd.base.BaseView
-import com.yyhd.myreader.db.Chapter
+import com.yyhd.myreader.db.table.Chapter
 
 /**
  * Created by hanli

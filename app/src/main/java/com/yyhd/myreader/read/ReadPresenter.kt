@@ -1,8 +1,7 @@
 package com.yyhd.myreader.read
 
 import com.yyhd.base.BaseMvpPresenter
-import com.yyhd.myreader.db.Chapter
-import com.yyhd.myreader.engine.BaseBookEngine
+import com.yyhd.myreader.db.table.Chapter
 import com.yyhd.myreader.engine.BiqukanBookEngine
 import com.yyhd.myreader.engine.BookEngine
 import kotlinx.coroutines.Dispatchers

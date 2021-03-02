@@ -3,8 +3,8 @@ package com.yyhd.myreader.engine
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.ToastUtils
-import com.yyhd.myreader.db.Book
-import com.yyhd.myreader.db.Chapter
+import com.yyhd.myreader.db.table.Book
+import com.yyhd.myreader.db.table.Chapter
 import org.jsoup.nodes.Document
 import java.net.URLEncoder
 import org.jsoup.safety.Whitelist

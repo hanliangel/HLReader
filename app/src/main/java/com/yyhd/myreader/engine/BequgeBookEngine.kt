@@ -1,7 +1,7 @@
 package com.yyhd.myreader.engine
 
-import com.yyhd.myreader.db.Book
-import com.yyhd.myreader.db.Chapter
+import com.yyhd.myreader.db.table.Book
+import com.yyhd.myreader.db.table.Chapter
 
 /**
  * Created by hanli

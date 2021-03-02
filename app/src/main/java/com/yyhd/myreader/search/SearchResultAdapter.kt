@@ -1,19 +1,14 @@
 package com.yyhd.myreader.search
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import butterknife.BindView
-import butterknife.ButterKnife
-import com.blankj.utilcode.util.LogUtils
 import com.yyhd.base.BaseRecycleAdapter
 import com.yyhd.myreader.R
-import com.yyhd.myreader.R2
-import com.yyhd.myreader.db.Book
+import com.yyhd.myreader.db.table.Book
 import com.yyhd.myreader.detail.BookDetailActivity
 import com.yyhd.myreader.detail.BookDetailFragment
 
@@ -22,7 +17,7 @@ import com.yyhd.myreader.detail.BookDetailFragment
  * date 2020-08-21.
  * ps: 搜索结果列表的adapter
  */
-class SearchResultAdapter : BaseRecycleAdapter<Book , SearchResultAdapter.SearchResultHolder>() {
+class SearchResultAdapter : BaseRecycleAdapter<Book, SearchResultAdapter.SearchResultHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchResultHolder {

@@ -1,6 +1,5 @@
 package com.yyhd.myreader.detail
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,16 +7,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.yyhd.base.BaseRecycleAdapter
 import com.yyhd.myreader.R
-import com.yyhd.myreader.db.Chapter
-import com.yyhd.myreader.read.ReadActivity
-import com.yyhd.myreader.read.ReadFragment
+import com.yyhd.myreader.db.table.Chapter
 
 /**
  * Created by hanli
  * date 2020-08-24.
  * ps:
  */
-class ChapterAdapter : BaseRecycleAdapter<Chapter , ChapterAdapter.ViewHolder>() {
+class ChapterAdapter : BaseRecycleAdapter<Chapter, ChapterAdapter.ViewHolder>() {
 
     lateinit var chapterListListener : ChapterListListener
 

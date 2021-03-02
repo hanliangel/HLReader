@@ -2,7 +2,7 @@ package com.yyhd.myreader.detail
 
 import com.yyhd.base.BasePresenter
 import com.yyhd.base.BaseView
-import com.yyhd.myreader.db.Book
+import com.yyhd.myreader.db.table.Book
 
 /**
  * Created by hanli

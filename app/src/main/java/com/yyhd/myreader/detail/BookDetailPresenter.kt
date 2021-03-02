@@ -1,7 +1,7 @@
 package com.yyhd.myreader.detail
 
 import com.yyhd.base.BaseMvpPresenter
-import com.yyhd.myreader.db.Book
+import com.yyhd.myreader.db.table.Book
 import com.yyhd.myreader.engine.BiqukanBookEngine
 import com.yyhd.myreader.engine.BookEngine
 import kotlinx.coroutines.Dispatchers

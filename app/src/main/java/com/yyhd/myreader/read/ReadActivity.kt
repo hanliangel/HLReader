@@ -3,9 +3,7 @@ package com.yyhd.myreader.read
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.annotation.RequiresPermission
 import com.yyhd.base.BaseMvpActivity
-import com.yyhd.myreader.db.Book
 
 /**
  * Created by hanli

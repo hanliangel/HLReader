@@ -14,7 +14,7 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView
 import com.yyhd.base.BaseMvpFragment
 import com.yyhd.base.widget.NoBottomDividerItemDecoration
 import com.yyhd.myreader.R
-import com.yyhd.myreader.db.Book
+import com.yyhd.myreader.db.table.Book
 import com.yyhd.myreader.engine.BaseBookEngine
 import com.yyhd.myreader.engine.BiqukanBookEngine
 

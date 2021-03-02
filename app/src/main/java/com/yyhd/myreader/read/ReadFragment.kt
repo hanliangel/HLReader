@@ -9,8 +9,8 @@ import com.blankj.utilcode.util.ToastUtils
 import com.yyhd.base.BaseMvpFragment
 import com.yyhd.myreader.R
 import com.yyhd.myreader.R2
-import com.yyhd.myreader.db.Book
-import com.yyhd.myreader.db.Chapter
+import com.yyhd.myreader.db.table.Book
+import com.yyhd.myreader.db.table.Chapter
 
 /**
  * Created by hanli
