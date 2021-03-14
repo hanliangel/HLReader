@@ -30,9 +30,7 @@ class SearchResultAdapter : BaseRecycleAdapter<Book, SearchResultAdapter.SearchR
         holder.tvAuthorName.setText(book.author)
 
         holder.itemView.setOnClickListener { v ->
-            val bundle = Bundle()
-            bundle.putSerializable(BookDetailFragment.PARAM_KEY_BOOK, book)
-            BookDetailActivity.startActivity(v.context, bundle)
+            BookDetailActivity.startActivity(v.context, book)
         }
     }
 

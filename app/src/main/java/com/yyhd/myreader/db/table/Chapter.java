@@ -2,6 +2,13 @@ package com.yyhd.myreader.db.table;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.JoinEntity;
+import org.greenrobot.greendao.annotation.ToMany;
+
+import java.io.Serializable;
+import java.util.List;
+import org.greenrobot.greendao.DaoException;
 
 /**
  * Created by hanli
@@ -9,7 +16,31 @@ import org.greenrobot.greendao.annotation.Generated;
  * ps:
  */
 @Entity
-public class Chapter {
+public class Chapter implements Serializable {
+
+    public static final long serialVersionUID = 1231332L;
+
+    /**
+     * 章节名字
+     */
+    public String name;
+
+    /**
+     * 所属的书本id
+     */
+    public Long bookId;
+
+    /**
+     * 章节内容
+     */
+    public String content;
+
+
+    /**
+     * 章节url
+     */
+    @Id
+    public String url;
 
     public Chapter(String name) {
         this.name = name;
@@ -59,20 +90,4 @@ public class Chapter {
         this.url = url;
     }
 
-    /**
-     * 章节名字
-     */
-    public String name;
-
-    public Long bookId;
-
-    /**
-     * 章节内容
-     */
-    public String content;
-
-    /**
-     * 章节url
-     */
-    public String url;
 }

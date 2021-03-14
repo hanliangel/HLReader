@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import com.yyhd.base.BaseMvpActivity
+import com.yyhd.myreader.db.table.Book
 
 /**
  * Created by hanli
@@ -24,7 +25,9 @@ class BookDetailActivity : BaseMvpActivity<BookDetailFragment>() {
 
 
     companion object {
-        fun startActivity(context: Context , bundle: Bundle){
+        fun startActivity(context: Context , book: Book){
+            val bundle = Bundle()
+            bundle.putSerializable(BookDetailFragment.PARAM_KEY_BOOK, book)
             val intent = Intent(context , BookDetailActivity::class.java)
             intent.putExtras(bundle)
             context.startActivity(intent)

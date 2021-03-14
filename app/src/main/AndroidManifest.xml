@@ -11,7 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+                android:configChanges="orientation|screenSize|smallestScreenSize|layoutDirection|screenLayout|keyboardHidden"
+                android:windowSoftInputMode="adjustPan"
+                >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,11 +24,16 @@
 
         <activity android:name=".detail.BookDetailActivity"
                 android:screenOrientation="portrait"
+                android:configChanges="orientation|screenSize|smallestScreenSize|layoutDirection|screenLayout|keyboardHidden"
+                android:windowSoftInputMode="adjustPan"
                 />
 
 
         <activity android:name=".read.ReadActivity"
                 android:screenOrientation="portrait"
+
+                android:configChanges="orientation|screenSize|smallestScreenSize|layoutDirection|screenLayout|keyboardHidden"
+                android:windowSoftInputMode="adjustPan"
                 />
 
     </application>

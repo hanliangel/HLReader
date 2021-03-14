@@ -65,6 +65,25 @@ class BiqukanBookEngine : BaseBookEngine() {
     override fun getBookDetail(book: Book) {
         try {
             var document = getDocument(book.bookDetailUrl)
+            // 获取书本封面图
+            val coverElements = document.getElementsByClass("cover")
+            if(ObjectUtils.isNotEmpty(coverElements)){
+                val child = coverElements[0].child(0)
+                child?.let {
+                    val src = child.attr("src")
+                    book.setCoverUrl(baseBiqukanUrl + src)
+                }
+            }
+
+            // 获取简介
+            val introElements = document.getElementsByClass("intro")
+            if(ObjectUtils.isNotEmpty(introElements)){
+                var introduction = introElements.html()
+                introduction = Jsoup.clean(introduction , "" , Whitelist.none() , Document.OutputSettings().prettyPrint(false))
+                book.setIntroduction(introduction)
+            }
+
+            // 获取章节列表
             val elementListmain = document.getElementsByClass("listmain")
             val chapters = elementListmain[0].children()[0].children()
             var isMainChapter = false

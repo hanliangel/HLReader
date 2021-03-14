@@ -2,10 +2,12 @@ package com.yyhd.myreader.bookshelf
 
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
 import com.yyhd.base.BaseMvpFragment
 import com.yyhd.myreader.R
+import com.yyhd.myreader.db.DBManager
 
 /**
  * Created by hanli
@@ -20,12 +22,19 @@ class BookshelfFragment : BaseMvpFragment<BookshelfContract.Presenter>(), Booksh
     @BindView(R.id.recycle_view)
     lateinit var recycleView: RecyclerView
 
+    lateinit var adapter : BookShelfListAdapter
+
     override fun initView(savedInstanceState: Bundle?, rootView: View) {
 
     }
 
     override fun initValues(arguments: Bundle?) {
+        val bookList = DBManager.mDaoSession.bookDao.loadAll()
+        adapter = BookShelfListAdapter()
+        adapter.data = bookList
 
+        recycleView.layoutManager = LinearLayoutManager(activity , LinearLayoutManager.VERTICAL , false)
+        recycleView.adapter = adapter
     }
 
 
