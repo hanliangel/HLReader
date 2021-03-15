@@ -7,6 +7,7 @@ import com.yyhd.myreader.db.table.Book
 import com.yyhd.myreader.db.table.BookDao
 import com.yyhd.myreader.engine.BiqukanBookEngine
 import com.yyhd.myreader.engine.BookEngine
+import com.yyhd.myreader.engine.EngineFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -21,7 +22,7 @@ import java.lang.Exception
 class BookDetailPresenter(view : BookDetailContract.View) : BookDetailContract.Presenter , BaseMvpPresenter<BookDetailContract.View>(view){
 
 
-    var bookEnngine : BookEngine = BiqukanBookEngine()
+    var bookEnngine : BookEngine = EngineFactory.getBookEngine()
 
     override fun loadBookDetail(book : Book) {
         GlobalScope.launch(Dispatchers.IO){

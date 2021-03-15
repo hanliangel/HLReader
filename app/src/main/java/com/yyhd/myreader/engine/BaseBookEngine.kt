@@ -22,25 +22,17 @@ abstract class BaseBookEngine : BookEngine {
             .get()
     }
 
+
     /**
-     * 保存一本书到数据库
+     * 从获得的包含各种html标签的内容中获得格式化好的内容
+     * @param rawContent
+     * @return
      */
-    fun saveBookToDB(book : Book) {
-        DBManager.mDaoSession.insert(book)
-        DBManager.mDaoSession.bookDao.insert(book)
-        DBManager.mDaoSession.bookDao.insertInTx(book)
-        DBManager.mDaoSession.bookDao.insertOrReplace(book)
-
-        DBManager.mDaoSession.update(book)
-        DBManager.mDaoSession.bookDao.updateInTx(book)
-
-        DBManager.mDaoSession.delete(book)
-        DBManager.mDaoSession.bookDao.deleteAll()
-
-        DBManager.mDaoSession.bookDao.loadAll()
-        val resultList = DBManager.mDaoSession.bookDao.queryRaw("where bookName = ?", "诛仙")
-        DBManager.mDaoSession.bookDao.deleteInTx(resultList)
-
-        val list = DBManager.mDaoSession.bookDao.queryBuilder().where(BookDao.Properties.BookName.eq("诛仙")).list()
+    protected fun getContentFromHtml(rawContent: String): String {
+        var rawContent = rawContent
+        rawContent = rawContent.replace("<br>".toRegex(), "")
+        rawContent = rawContent.replace("&nbsp;".toRegex(), " ")
+        //        rawContent = rawContent.replaceAll("<.*>.*</[\\w-\\W-]*>", "");
+        return rawContent
     }
 }

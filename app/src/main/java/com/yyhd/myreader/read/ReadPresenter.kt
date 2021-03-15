@@ -4,6 +4,7 @@ import com.yyhd.base.BaseMvpPresenter
 import com.yyhd.myreader.db.table.Chapter
 import com.yyhd.myreader.engine.BiqukanBookEngine
 import com.yyhd.myreader.engine.BookEngine
+import com.yyhd.myreader.engine.EngineFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -16,7 +17,7 @@ import kotlinx.coroutines.withContext
  */
 class ReadPresenter(view : ReadContract.View) : ReadContract.Presenter , BaseMvpPresenter<ReadContract.View>(view) {
 
-    val bookEngine : BookEngine = BiqukanBookEngine()
+    val bookEngine : BookEngine = EngineFactory.getBookEngine()
 
     override fun loadChapter(chapter: Chapter) {
         GlobalScope.launch(Dispatchers.IO) {

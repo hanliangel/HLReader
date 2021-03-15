@@ -17,6 +17,7 @@ import com.yyhd.myreader.R
 import com.yyhd.myreader.db.table.Book
 import com.yyhd.myreader.engine.BaseBookEngine
 import com.yyhd.myreader.engine.BiqukanBookEngine
+import com.yyhd.myreader.engine.EngineFactory
 
 /**
  * Created by hanli
@@ -36,14 +37,11 @@ class SearchFragment : BaseMvpFragment<SearchContract.Presenter>() , SearchContr
 
     lateinit var searchResultAdapter : SearchResultAdapter
 
-    lateinit var bookEngine: BaseBookEngine
-
     init {
         setPresenter(SearchPresenter(this))
     }
 
     override fun initValues(arguments: Bundle?) {
-        bookEngine = BiqukanBookEngine()
 
         activity?.let {
             recyclerView.layoutManager = LinearLayoutManager(it , LinearLayoutManager.VERTICAL , false)
