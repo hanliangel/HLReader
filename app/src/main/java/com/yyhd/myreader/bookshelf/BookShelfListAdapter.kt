@@ -30,11 +30,14 @@ class BookShelfListAdapter : BaseRecycleAdapter<Book, BookShelfListAdapter.BookS
         var bean = getItemBean(position)
         Glide.with(holder.itemView.context)
             .load(bean.coverUrl)
+            .error(R.drawable.book_cover_placeholder)
+            .placeholder(R.drawable.book_cover_placeholder)
             .into(holder.ivCover)
 
         holder.tvBookName.text = bean.bookName
         holder.tvAuthorName.text = bean.author
         holder.tvIntroduction.text = bean.introduction
+        holder.tvEngineName.text = bean.engineName
 
         holder.itemView.setOnClickListener { v -> BookDetailActivity.startActivity(v.context , bean) }
     }
@@ -49,6 +52,8 @@ class BookShelfListAdapter : BaseRecycleAdapter<Book, BookShelfListAdapter.BookS
         var tvAuthorName : TextView = itemView.findViewById(R.id.tv_author)
 
         var tvIntroduction : TextView = itemView.findViewById(R.id.tv_introduction)
+
+        var tvEngineName : TextView = itemView.findViewById(R.id.tv_engine_name)
 
     }
 }

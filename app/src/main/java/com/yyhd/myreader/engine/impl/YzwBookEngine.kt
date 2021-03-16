@@ -1,9 +1,10 @@
-package com.yyhd.myreader.engine
+package com.yyhd.myreader.engine.impl
 
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.yyhd.myreader.db.table.Book
 import com.yyhd.myreader.db.table.Chapter
+import com.yyhd.myreader.engine.BaseBookEngine
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.safety.Whitelist
@@ -104,5 +105,8 @@ class YzwBookEngine : BaseBookEngine() {
     }
 
 
+    override fun getEngineName(): String {
+        return "35小说网"
+    }
 
 }

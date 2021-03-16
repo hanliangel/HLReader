@@ -26,4 +26,10 @@ interface BookEngine {
      * 获得章节内容详情
      */
     fun getChapterContent(chapter: Chapter)
+
+
+    /**
+     * 返回当前引擎的名字，也就是网站名字
+     */
+    abstract fun getEngineName(): String
 }

@@ -2,6 +2,8 @@ package com.yyhd.myreader.search
 
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,8 +17,6 @@ import com.yyhd.base.BaseMvpFragment
 import com.yyhd.base.widget.NoBottomDividerItemDecoration
 import com.yyhd.myreader.R
 import com.yyhd.myreader.db.table.Book
-import com.yyhd.myreader.engine.BaseBookEngine
-import com.yyhd.myreader.engine.BiqukanBookEngine
 import com.yyhd.myreader.engine.EngineFactory
 
 /**
@@ -34,6 +34,9 @@ class SearchFragment : BaseMvpFragment<SearchContract.Presenter>() , SearchContr
 
     @BindView(R.id.recycle_view)
     lateinit var recyclerView: RecyclerView
+
+    @BindView(R.id.spinner)
+    lateinit var spinner: Spinner
 
     lateinit var searchResultAdapter : SearchResultAdapter
 
@@ -53,6 +56,23 @@ class SearchFragment : BaseMvpFragment<SearchContract.Presenter>() , SearchContr
 
         searchResultAdapter = SearchResultAdapter()
         recyclerView.setAdapter(searchResultAdapter)
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val stringArray = resources.getStringArray(R.array.searchEngineClassList)
+                var selectEngineName = stringArray[position]
+                EngineFactory.currentEngineClassName = selectEngineName
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+        }
     }
 
     override fun initView(savedInstanceState: Bundle?, rootView: View) {

@@ -1,5 +1,6 @@
 package com.yyhd.myreader.engine
 
+import com.yyhd.myreader.engine.impl.YzwBookEngine
 import java.lang.Exception
 
 /**
@@ -7,21 +8,29 @@ import java.lang.Exception
  * date 2021-03-14.
  * ps:
  */
-class EngineFactory {
+object EngineFactory {
 
-    companion object{
+    var cachedEngine : MutableMap<String , BaseBookEngine> = HashMap()
 
-        /**
-         * 根据引擎名字返回对应的引擎
-         */
-        fun getBookEngine(engineName : String = "com.yyhd.myreader.engine.YzwBookEngine") : BaseBookEngine{
-            try{
-                return Class.forName(engineName).newInstance() as BaseBookEngine
-            } catch (e : Exception){
-                e.printStackTrace()
+    /**
+     * 搜索那会使用的当前引擎
+     */
+    var currentEngineClassName = YzwBookEngine::class.java.name
+
+    /**
+     * 根据引擎名字返回对应的引擎
+     */
+    fun getBookEngine(engineName : String = currentEngineClassName) : BaseBookEngine{
+        try{
+            var bookEngine = cachedEngine[engineName]
+            if(bookEngine == null){
+                bookEngine = Class.forName(engineName).newInstance() as BaseBookEngine
             }
-            return YzwBookEngine()
+            return bookEngine
+        } catch (e : Exception){
+            e.printStackTrace()
         }
-
+        return YzwBookEngine()
     }
+
 }

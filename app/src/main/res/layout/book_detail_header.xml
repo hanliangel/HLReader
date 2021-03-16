@@ -26,6 +26,7 @@
 
             <TextView
                     android:id="@+id/tv_book_name"
+                    android:textSize="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -35,6 +36,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
+            <TextView
+                    android:id="@+id/tv_engine_name"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
 
         </LinearLayout>
 
@@ -43,13 +50,16 @@
 
 
     <TextView
-            android:padding="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             android:id="@+id/tv_introduction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
     <LinearLayout
             android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

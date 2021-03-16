@@ -1,10 +1,11 @@
-package com.yyhd.myreader.engine
+package com.yyhd.myreader.engine.impl
 
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yyhd.myreader.db.table.Book
 import com.yyhd.myreader.db.table.Chapter
+import com.yyhd.myreader.engine.BaseBookEngine
 import org.jsoup.nodes.Document
 import java.net.URLEncoder
 import org.jsoup.safety.Whitelist
@@ -113,4 +114,10 @@ class BiqukanBookEngine : BaseBookEngine() {
             e.printStackTrace()
         }
     }
+
+
+    override fun getEngineName(): String {
+        return "笔趣看"
+    }
+
 }

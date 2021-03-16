@@ -41,6 +41,7 @@ open class BookDetailFragment : BaseMvpFragment<BookDetailContract.Presenter>() 
     lateinit var tvIntroduction : TextView
     lateinit var btCollect : Button
     lateinit var ivCover : ImageView
+    lateinit var tvEngineName : TextView
 
     /**
      * 当前是否收藏了
@@ -78,6 +79,7 @@ open class BookDetailFragment : BaseMvpFragment<BookDetailContract.Presenter>() 
             tvIntroduction = headerView.findViewById<TextView>(R.id.tv_introduction)
             btCollect = headerView.findViewById<Button>(R.id.bt_collect)
             ivCover = headerView.findViewById<ImageView>(R.id.iv_cover)
+            tvEngineName = headerView.findViewById<TextView>(R.id.tv_engine_name)
 
             fillHeader(book)
             btCollect.setOnClickListener(this)
@@ -120,6 +122,7 @@ open class BookDetailFragment : BaseMvpFragment<BookDetailContract.Presenter>() 
         tvBookName.text = book.bookName
         tvAuthorName.text = book.author
         tvIntroduction.text = book.introduction
+        tvEngineName.text = book.engineName
 
         if(isCollected){
             btCollect.text = "取消收藏"

@@ -1,8 +1,6 @@
 package com.yyhd.myreader.search
 
-import com.blankj.utilcode.util.LogUtils
 import com.yyhd.base.BaseMvpPresenter
-import com.yyhd.myreader.engine.BiqukanBookEngine
 import com.yyhd.myreader.engine.BookEngine
 import com.yyhd.myreader.engine.EngineFactory
 import kotlinx.coroutines.Dispatchers
@@ -17,12 +15,15 @@ import kotlinx.coroutines.withContext
  */
 class SearchPresenter(view: SearchFragment) : BaseMvpPresenter<SearchContract.View>(view), SearchContract.Presenter {
 
-    var bookEngine : BookEngine = EngineFactory.getBookEngine()
-
     override fun searchBook(searchStr: String?) {
+        var bookEngine : BookEngine = EngineFactory.getBookEngine()
         GlobalScope.launch(Dispatchers.IO) {
             searchStr?.let {
                 val bookList = bookEngine.searchBook(searchStr)
+                for(item in bookList){
+                    item.engineName = bookEngine.getEngineName()
+                    item.engineClassName = EngineFactory.currentEngineClassName
+                }
                 withContext(Dispatchers.Main){
                     view.fillData(bookList)
                 }

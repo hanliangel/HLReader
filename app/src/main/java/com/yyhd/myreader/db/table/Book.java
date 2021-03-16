@@ -50,9 +50,14 @@ public class Book implements Serializable {
     public String bookDetailUrl;
 
     /**
-     * 书本使用的引擎名称
+     * 书本使用的引擎名称，也就是网站名字
      */
     public String engineName;
+
+    /**
+     * 引擎的类名，用来实例化引擎
+     */
+    public String engineClassName;
 
     /**
      * 当前正在读读章节
@@ -84,9 +89,9 @@ public class Book implements Serializable {
         this.bookName = bookName;
     }
 
-    @Generated(hash = 1340290756)
+    @Generated(hash = 1043547082)
     public Book(Long bookId, String bookName, String coverUrl, String author, String introduction,
-            String bookDetailUrl, String engineName, String readingChapterUrl) {
+            String bookDetailUrl, String engineName, String engineClassName, String readingChapterUrl) {
         this.bookId = bookId;
         this.bookName = bookName;
         this.coverUrl = coverUrl;
@@ -94,6 +99,7 @@ public class Book implements Serializable {
         this.introduction = introduction;
         this.bookDetailUrl = bookDetailUrl;
         this.engineName = engineName;
+        this.engineClassName = engineClassName;
         this.readingChapterUrl = readingChapterUrl;
     }
 
@@ -256,6 +262,14 @@ public class Book implements Serializable {
 
     public void setEngineName(String engineName) {
         this.engineName = engineName;
+    }
+
+    public String getEngineClassName() {
+        return this.engineClassName;
+    }
+
+    public void setEngineClassName(String engineClassName) {
+        this.engineClassName = engineClassName;
     }
 
     /** called by internal mechanisms, do not call yourself. */

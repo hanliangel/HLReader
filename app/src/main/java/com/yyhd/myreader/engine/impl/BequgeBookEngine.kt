@@ -1,7 +1,8 @@
-package com.yyhd.myreader.engine
+package com.yyhd.myreader.engine.impl
 
 import com.yyhd.myreader.db.table.Book
 import com.yyhd.myreader.db.table.Chapter
+import com.yyhd.myreader.engine.BaseBookEngine
 
 /**
  * Created by hanli
@@ -9,6 +10,10 @@ import com.yyhd.myreader.db.table.Chapter
  * ps:
  */
 class BequgeBookEngine : BaseBookEngine() {
+    override fun getEngineName(): String {
+        return "别去看"
+    }
+
     override fun getChapterContent(chapter: Chapter) {
     }
 
