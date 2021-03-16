@@ -71,6 +71,3 @@ repositories {
     mavenCentral()
 }
 
-greendao{
-    schemaVersion 2
-}

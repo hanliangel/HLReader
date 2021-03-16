@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical" android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@color/base_color"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     <ScrollView
@@ -23,18 +25,19 @@
 
 
             <LinearLayout
+                    android:id="@+id/ll_bottom_operator"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" >
 
-                <TextView
+                <Button
                         android:id="@+id/tv_last"
                         android:text="上一章"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="50dp" />
 
-                <TextView
+                <Button
                         android:id="@+id/tv_next"
                         android:text="下一章"
                         android:layout_width="0dp"

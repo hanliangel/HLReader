@@ -47,3 +47,8 @@ dependencies {
 repositories {
     mavenCentral()
 }
+
+
+greendao{
+    schemaVersion 3
+}

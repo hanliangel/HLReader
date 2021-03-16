@@ -50,6 +50,11 @@ public class Book implements Serializable {
     public String bookDetailUrl;
 
     /**
+     * 书本使用的引擎名称
+     */
+    public String engineName;
+
+    /**
      * 当前正在读读章节
      */
     @ToOne(joinProperty = "readingChapterUrl")
@@ -79,15 +84,16 @@ public class Book implements Serializable {
         this.bookName = bookName;
     }
 
-    @Generated(hash = 99492663)
+    @Generated(hash = 1340290756)
     public Book(Long bookId, String bookName, String coverUrl, String author, String introduction,
-            String bookDetailUrl, String readingChapterUrl) {
+            String bookDetailUrl, String engineName, String readingChapterUrl) {
         this.bookId = bookId;
         this.bookName = bookName;
         this.coverUrl = coverUrl;
         this.author = author;
         this.introduction = introduction;
         this.bookDetailUrl = bookDetailUrl;
+        this.engineName = engineName;
         this.readingChapterUrl = readingChapterUrl;
     }
 
@@ -242,6 +248,14 @@ public class Book implements Serializable {
 
     public void setCoverUrl(String coverUrl) {
         this.coverUrl = coverUrl;
+    }
+
+    public String getEngineName() {
+        return this.engineName;
+    }
+
+    public void setEngineName(String engineName) {
+        this.engineName = engineName;
     }
 
     /** called by internal mechanisms, do not call yourself. */

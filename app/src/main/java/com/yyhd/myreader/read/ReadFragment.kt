@@ -2,6 +2,7 @@ package com.yyhd.myreader.read
 
 import android.os.Bundle
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import butterknife.BindView
@@ -34,6 +35,10 @@ class ReadFragment : BaseMvpFragment<ReadContract.Presenter>() , ReadContract.Vi
     @BindView(R2.id.scroll_view)
     lateinit var scrollView : ScrollView
 
+
+    @BindView(R.id.ll_bottom_operator)
+    lateinit var llBottomOperator : LinearLayout
+
     lateinit var book: Book
 
     var currentChapterIndex : Int = 0
@@ -45,6 +50,7 @@ class ReadFragment : BaseMvpFragment<ReadContract.Presenter>() , ReadContract.Vi
     override fun fillData(chapter: Chapter) {
         tv_content.text = chapter.content
         scrollView.scrollTo(0 , 0)
+        llBottomOperator.visibility = View.VISIBLE
     }
 
     override fun initValues(arguments: Bundle?) {
@@ -53,6 +59,7 @@ class ReadFragment : BaseMvpFragment<ReadContract.Presenter>() , ReadContract.Vi
             currentChapterIndex = arguments.getInt(PARAM_KEY_CHAPTER_INDEX)
 
             getPresenter().loadChapter(book.chapters.get(currentChapterIndex))
+            llBottomOperator.visibility = View.GONE
         }
 
     }

@@ -35,6 +35,7 @@ open class BookDetailFragment : BaseMvpFragment<BookDetailContract.Presenter>() 
     @BindView(R.id.recycle_view)
     lateinit var recycleView : HeaderAndFooterRecycleView
 
+
     lateinit var tvBookName : TextView
     lateinit var tvAuthorName : TextView
     lateinit var tvIntroduction : TextView
@@ -126,7 +127,9 @@ open class BookDetailFragment : BaseMvpFragment<BookDetailContract.Presenter>() 
             btCollect.text = "收藏"
         }
 
-        Glide.with(context).load(book.coverUrl)
+        Glide.with(context)
+            .load(book.coverUrl)
+            .error(R.drawable.book_cover_placeholder)
             .into(ivCover)
     }
 
