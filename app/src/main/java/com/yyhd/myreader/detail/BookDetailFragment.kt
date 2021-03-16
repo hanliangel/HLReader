@@ -88,6 +88,7 @@ open class BookDetailFragment : BaseMvpFragment<BookDetailContract.Presenter>() 
             recycleView.addHeader(headerView)
 
             getPresenter().loadBookDetail(book)
+            showLoading()
         }
     }
 
@@ -108,6 +109,7 @@ open class BookDetailFragment : BaseMvpFragment<BookDetailContract.Presenter>() 
     override fun fillData(book: Book) {
         fillHeader(book)
         chapterAdapter.setData(book.chapters)
+        dismissLoading()
     }
 
     /**

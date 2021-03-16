@@ -10,4 +10,8 @@ interface BaseView<T : BasePresenter> {
     fun setPresenter(presenter : T)
 
     fun getPresenter() : T
+
+    fun showLoading()
+
+    fun dismissLoading()
 }

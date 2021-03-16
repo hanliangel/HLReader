@@ -60,6 +60,7 @@ class SearchFragment : BaseMvpFragment<SearchContract.Presenter>() , SearchContr
         searchView.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 getPresenter().searchBook(query)
+                showLoading()
                 return false
             }
 
@@ -80,6 +81,7 @@ class SearchFragment : BaseMvpFragment<SearchContract.Presenter>() , SearchContr
             ToastUtils.showShort("没有搜到东西啊！")
         }
         searchResultAdapter.setData(bookList)
+        dismissLoading()
     }
 
 

@@ -1,5 +1,7 @@
 package com.yyhd.base
 
+import com.yyhd.base.widget.LoadingDialog
+
 /**
  * Created by hanli
  * date 2019-10-21.
@@ -12,6 +14,8 @@ open abstract class BaseMvpFragment<T : BasePresenter> : BaseFragment , BaseView
      */
     lateinit var mPresenter : T
 
+    var loadingDialog : LoadingDialog? = null
+
     constructor()
 
     override fun setPresenter(presenter : T){
@@ -22,4 +26,15 @@ open abstract class BaseMvpFragment<T : BasePresenter> : BaseFragment , BaseView
         return mPresenter
     }
 
+    override fun showLoading() {
+        dismissLoading()
+        loadingDialog = LoadingDialog(context!!)
+        loadingDialog?.show()
+    }
+
+    override fun dismissLoading() {
+        if(loadingDialog != null && loadingDialog!!.isShowing){
+            loadingDialog?.dismiss()
+        }
+    }
 }
