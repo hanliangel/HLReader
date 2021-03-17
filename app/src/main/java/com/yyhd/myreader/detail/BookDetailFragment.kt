@@ -12,11 +12,13 @@ import butterknife.BindView
 import com.blankj.utilcode.util.ToastUtils
 import com.bumptech.glide.Glide
 import com.yyhd.base.BaseMvpFragment
+import com.yyhd.base.event.CollectionChangedEvent
 import com.yyhd.base.widget.rerycleview.HeaderAndFooterRecycleView
 import com.yyhd.myreader.R
 import com.yyhd.myreader.db.table.Book
 import com.yyhd.myreader.read.ReadActivity
 import com.yyhd.myreader.read.ReadFragment
+import org.greenrobot.eventbus.EventBus
 
 /**
  * Created by hanli
@@ -143,6 +145,7 @@ open class BookDetailFragment : BaseMvpFragment<BookDetailContract.Presenter>() 
                 if(isCollected){
                     if(getPresenter().cancelCollectBook(book)){
                         ToastUtils.showShort("取消收藏成功")
+                        EventBus.getDefault().post(CollectionChangedEvent())
                         isCollected = false
                     } else {
                         ToastUtils.showShort("取消收藏失败")
@@ -150,6 +153,7 @@ open class BookDetailFragment : BaseMvpFragment<BookDetailContract.Presenter>() 
                 } else {
                     if(getPresenter().collectBook(book)){
                         ToastUtils.showShort("收藏成功")
+                        EventBus.getDefault().post(CollectionChangedEvent())
                         isCollected = true
                     } else {
                         ToastUtils.showShort("收藏失败")

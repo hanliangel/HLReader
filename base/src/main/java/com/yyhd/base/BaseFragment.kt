@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import butterknife.ButterKnife
 import com.billy.android.loading.Gloading
+import org.greenrobot.eventbus.EventBus
 
 
 /**
@@ -43,6 +44,7 @@ open abstract class BaseFragment : Fragment {
 
         return root
     }
+
 
     /**
      * 返回布局的id

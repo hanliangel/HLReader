@@ -6,8 +6,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
 import com.yyhd.base.BaseMvpFragment
+import com.yyhd.base.event.CollectionChangedEvent
 import com.yyhd.myreader.R
 import com.yyhd.myreader.db.DBManager
+import com.yyhd.myreader.db.table.Book
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 /**
  * Created by hanli
@@ -24,17 +29,22 @@ class BookshelfFragment : BaseMvpFragment<BookshelfContract.Presenter>(), Booksh
 
     lateinit var adapter : BookShelfListAdapter
 
+    init {
+        setPresenter(BookshelfPresenter(this))
+    }
+
     override fun initView(savedInstanceState: Bundle?, rootView: View) {
 
     }
 
     override fun initValues(arguments: Bundle?) {
-        val bookList = DBManager.mDaoSession.bookDao.loadAll()
+        EventBus.getDefault().register(this)
         adapter = BookShelfListAdapter()
-        adapter.data = bookList
 
         recycleView.layoutManager = LinearLayoutManager(activity , LinearLayoutManager.VERTICAL , false)
         recycleView.adapter = adapter
+
+        val bookList = getPresenter().loadAll()
     }
 
 
@@ -43,4 +53,18 @@ class BookshelfFragment : BaseMvpFragment<BookshelfContract.Presenter>(), Booksh
     }
 
 
+    override fun fillData(bookList: MutableList<Book>) {
+        adapter.data = bookList
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public open fun onCollectionChanged(event : CollectionChangedEvent){
+        getPresenter().loadAll()
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
+    }
 }
