@@ -41,6 +41,7 @@ class BookshelfFragment : BaseMvpFragment<BookshelfContract.Presenter>(), Booksh
         EventBus.getDefault().register(this)
         adapter = BookShelfListAdapter()
 
+
         recycleView.layoutManager = LinearLayoutManager(activity , LinearLayoutManager.VERTICAL , false)
         recycleView.adapter = adapter
 
